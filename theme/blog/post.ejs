@@ -1,0 +1,6 @@
+<h1><%= post.title %></h1>
+<p><%- post.content %></p>
+
+<p><small><%= moment(post.date).format('YYYY-MM-DD') %></small></p>
+
+<a href="<%= settings.url %>">Back to home</a>
