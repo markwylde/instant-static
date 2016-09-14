@@ -1,57 +1,66 @@
 const ejs = require('ejs')
-const fs = require('fs')
-const fsp = require('fs-promise')
-const rimraf = require('rimraf')
+const fs = require('fs-extra-promise')
+const rimraf = require('rimraf-promise')
 const blog = require('./modules/blog')
 const ncp = require('ncp').ncp
+const moment = require('moment')
+const mkdirp = require('mkdirp-promise')
+const yaml = require('js-yaml')
 
-// Empty or create the dist directory
-rimraf('./dist', async () => {
-  await fsp.mkdir('./dist')
-  const posts = await blog.fetchPosts()
-  copyAssets()
-  renderPosts(posts)
-  renderHomePage(posts)
-})
+let settings, templates = {}
 
-async function copyAssets() {
-  return new Promise((resolve, reject) => {
-    ncp('./theme/css', './dist/css', function (err) {
-     if (err) {
-        reject(err)
-     } else {
-        resolve()
-     }
-    })
-  })
+async function render(file, scope) {
+  if (!templates[file]) {
+    templates[file] = await fs.readFileAsync(file, 'utf8')
+  }
+  const template = templates[file]
+  return ejs.render(template, Object.assign(scope, {moment, settings}))
 }
 
-async function renderPosts(posts) {
-  const mainLayout = fs.readFileSync('./theme/layouts/main.ejs', 'utf8')
-  const postPage = fs.readFileSync('./theme/pages/post.ejs', 'utf8')
+async function main() {
 
-  return Promise.all(posts.map(post => {
-    const compiled = ejs.render(mainLayout, {
-      title: post.title,
-      content: ejs.render(postPage, { post })
+  await rimraf('./dist')
+  await fs.mkdir('./dist')
+
+  settings = await fs.readFileAsync('./content/settings.yml', 'utf8')
+  settings = yaml.load(settings)
+
+  await fs.copySync('./theme/css', './dist/css')
+
+  const posts = await blog.fetchPosts(settings)
+  
+  await Promise.all([
+    renderPosts(posts),
+    renderHomePage(posts)
+  ])
+
+  // -----------------------------------------------
+
+  async function renderPosts(posts) {
+    return Promise.all(posts.map(renderPost))
+  }
+
+  async function renderPost(post) {
+      const compiled = await render('./theme/layouts/main.ejs', {
+        title: post.title,
+        content: await render('./theme/blog/post.ejs', { post }),
+      })
+      const path = `./dist/${moment(post.date).format('YYYY/MM/DD')}/${post.id}`
+      await mkdirp(path)
+      return fs.writeFile(`${path}/index.html`, compiled)
+  }
+
+
+  async function renderHomePage(posts) {
+    const compiled = await render('./theme/layouts/main.ejs', {
+      title: "Welcome",
+      content: await render('./theme/blog/home.ejs', { posts })
     })
 
-    return fsp.writeFile('./dist/' + post.id + '.html', compiled)
-  }))
+    fs.writeFile('./dist/index.html', compiled)
+  }
+
 
 }
 
-
-function renderHomePage(posts) {
-  const mainLayout = fs.readFileSync('./theme/layouts/main.ejs', 'utf8')
-  const homePage = fs.readFileSync('./theme/pages/home.ejs', 'utf8')
-
-  const compiled = ejs.render(mainLayout, {
-    title: "Welcome",
-    content: ejs.render(homePage, {
-      posts: posts
-    })
-  })
-
-  fsp.writeFile('./dist/index.html', compiled)
-}
+main().catch(console.log)
