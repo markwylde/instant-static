@@ -1,0 +1,21 @@
+<%/*
+  global properties:
+    - settings.url
+
+  exposed properties:
+    - product.name
+    - product.description
+    - product.category
+    - product.date
+
+  exposed utilities:
+    - moment
+    - groupBy
+*/%>
+
+<h1><%= product.name %></h1>
+<p><%- product.description %></p>
+
+<p><small>added on <%= moment(product.date).format('DD MMMM YYYY') %></small></p>
+
+<a href="<%= settings.url %>">Back to home</a>

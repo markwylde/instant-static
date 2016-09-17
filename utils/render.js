@@ -5,7 +5,7 @@ const yaml = require('js-yaml')
 const groupBy = require('./groupBy').default
 
 let templates = {}
-let settings = fs.readFile('./content/settings.yml', 'utf8')
+let settings = fs.readFileSync('./content/settings.yml', 'utf8')
 settings = yaml.load(settings)
 
 async function render(file, scope) {

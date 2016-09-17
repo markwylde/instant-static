@@ -1,0 +1,26 @@
+<%/*
+  global properties:
+    - settings.url
+
+  exposed properties:
+    - category.id
+    - category.title
+    - category.path
+
+    - category.items
+      - .name
+      - .description
+      - .category
+      - .date
+
+  exposed utilities:
+    - moment
+    - groupBy
+*/%>
+
+<h1>Shop for <%= category.title %></h1>
+<ul>
+<% category.items.forEach(product => { %>
+  <li><a href="<%= product.path %>"><%= product.name %></a> <small>added on <%= moment(product.date).format('DD MMMM YYYY') %></small>
+<% }) %>
+</ul>

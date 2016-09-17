@@ -32,7 +32,7 @@ module.exports = {
   renderProduct: async product => {
     const compiled = await render('./theme/layouts/main.ejs', {
       title: product.name,
-      content: await render('./theme/blog/product.ejs', { product }),
+      content: await render('./theme/shop/product.ejs', { product }),
     })
     const path = module.exports.path(product)
     await mkdirp(path)
@@ -42,7 +42,7 @@ module.exports = {
   renderCategory: async category => {
     const compiled = await render('./theme/layouts/main.ejs', {
       title: category.name,
-      content: await render('./theme/blog/category.ejs', { category }),
+      content: await render('./theme/shop/category.ejs', { category }),
     })
     const path = `./dist/${category.id}`
     await mkdirp(path)

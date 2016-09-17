@@ -5,7 +5,7 @@ module.exports = {
   render: async ({posts, products}) => {
     const compiled = await render('./theme/layouts/main.ejs', {
       title: 'Welcome',
-      content: await render('./theme/blog/home.ejs', { posts, products })
+      content: await render('./theme/home.ejs', { posts, products })
     })
 
     fs.writeFile('./dist/index.html', compiled)
