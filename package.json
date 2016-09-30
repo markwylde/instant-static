@@ -1,5 +1,5 @@
 {
-  "name": "abasell",
+  "name": "instant-static",
   "version": "1.0.0",
   "description": "",
   "main": "compile.js",
@@ -8,12 +8,12 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/yoxes/abasell.git"
+    "url": "git+https://github.com/yoxes/instant-static.git"
   },
   "author": "",
   "private": true,
   "bugs": {
-    "url": "https://github.com/yoxes/abasell/issues"
+    "url": "https://github.com/yoxes/instant-static/issues"
   },
   "babel": {
     "presets": [
@@ -24,7 +24,7 @@
       "transform-async-to-generator"
     ]
   },
-  "homepage": "https://github.com/yoxes/abasell#readme",
+  "homepage": "https://github.com/yoxes/instant-static#readme",
   "dependencies": {
     "babel-cli": "^6.14.0",
     "babel-eslint": "^6.1.2",
