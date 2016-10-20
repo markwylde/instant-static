@@ -1,10 +1,12 @@
+const mime = require('mime')
+
 class InstantStatic {
 
   constructor() {
     this.modules = {}
     this.content = []
     this.themes = {}
-    this.assets = {}
+    this.assets = []
   }
 
   addModules(modules) {
@@ -42,12 +44,10 @@ class InstantStatic {
     for (let asset in this.assets) {
       result = result.concat([{
         path: asset,
-        type: 'binary',
+        type: mime.lookup(asset),
         data: this.assets[asset]
       }])
     }
-
-
 
     return result
   }

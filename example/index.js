@@ -54,7 +54,7 @@ http.createServer(function(req, res) {
   const page = compiled.filter(page => page.path === req.url)[0]
   if (page) {
     res.writeHead(200, {
-      'Content-Type': 'text/html'
+      'Content-Type': page.type
     })
     res.write(page.data)    
   } else {

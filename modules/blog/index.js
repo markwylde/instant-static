@@ -16,7 +16,7 @@ module.exports = {
         .filter(content => content.module === 'blog')
         .map(post => ({
           path: `/${moment(post.date).format('YYYY/MM/DD')}/${post.id}`,
-          type: 'html',
+          type: 'text/html',
           data: ejs.render(inst.themes['blog/index.ejs'], {
             settings: inst.settings,
             post: Object.assign(post, { content: marked(post.content)}),
