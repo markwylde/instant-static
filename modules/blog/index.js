@@ -17,11 +17,18 @@ module.exports = {
         .map(post => ({
           path: `/${moment(post.date).format('YYYY/MM/DD')}/${post.id}`,
           type: 'text/html',
+          title: post.title,
           data: ejs.render(inst.themes['blog/index.ejs'], {
             settings: inst.settings,
             post: Object.assign(post, { content: marked(post.content)}),
             moment, 
             groupBy
+          })
+        }))
+        .map(post => Object.assign(post, {
+          data: ejs.render(inst.themes['layouts/main.ejs'], {
+            title: post.title,
+            content: post.data
           })
         }))
 }

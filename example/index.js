@@ -1,4 +1,5 @@
 const fs = require('fs')
+const yaml = require('js-yaml')
 
 const InstantStatic = require('../index.js')
 const is = new InstantStatic()
@@ -10,9 +11,10 @@ is.addTheme('layouts/main.ejs', fs.readFileSync('../theme/layouts/main.ejs', 'ut
 is.addTheme('shop/category.ejs', fs.readFileSync('../theme/shop/category.ejs', 'utf8'))
 is.addTheme('shop/product.ejs', fs.readFileSync('../theme/shop/product.ejs', 'utf8'))
 
-is.addSettings(fs.readFileSync('./settings.yml', 'utf8'))
+is.addSettings(yaml.load(fs.readFileSync('./settings.yml', 'utf8')))
 
 is.addAsset('/images/blog-banner.jpg', fs.readFileSync('./images/blog-banner.jpg'))
+is.addAsset('/css/global.css', fs.readFileSync('../theme/css/global.css'))
 
 is.addContent({
   module: 'blog',
