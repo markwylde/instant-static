@@ -4,6 +4,7 @@
   "description": "",
   "main": "compile.js",
   "scripts": {
+    "demo": "babel-node example",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {

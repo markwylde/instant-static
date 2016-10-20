@@ -17,12 +17,13 @@ const shop = require('instant-static-shop')
 
 is.addModules(blog, shop)
 
-is.includeDir('example/images', 'images')
-is.includeDir('example/blog', 'blog')
-is.includeDir('example/shop', 'shop')
+is.includeAssets('example/images')
+is.includeContent('example/blog')
+is.includeContent('example/shop')
 
 is.addContent(`
-  title: My Node Post
+  module: blog
+  title: My Node Post from YAML
   date: 2016-06-15 10:51
   banner: /images/blog-banner.jpg
   tags: 
@@ -33,7 +34,24 @@ is.addContent(`
     ## Node Post
     
     This post was inserted by node systematically
-`, 'blog')
+`)
+
+is.addContent({
+  module: 'blog',
+  title: 'My Node Post from JSON',
+  date: '2016-06-15 10:51',
+  banner: '/images/blog-banner.jpg',
+  tags: ['Node', 'Additional'],
+  type: 'markdown',
+  content: `
+    ## Node Post
+    
+    This post was inserted by node systematically`
+}, 'blog')
+
+const build = is.compile()
+build.save('dist')
+
 ```
 
 

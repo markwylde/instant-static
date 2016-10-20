@@ -1,13 +1,14 @@
 const fs = require('fs-promise')
-const render = require('../../utils/render').default
+// const render = require('../../utils/render').default
 
 module.exports = {
   render: async ({posts, products}) => {
-    const compiled = await render('./theme/layouts/main.ejs', {
-      title: 'Welcome',
-      content: await render('./theme/home.ejs', { posts, products })
-    })
+    console.log('os')
+    // const compiled = await render('./theme/layouts/main.ejs', {
+    //   title: 'Welcome',
+    //   content: await render('./theme/home.ejs', { posts, products })
+    // })
 
-    fs.writeFile('./dist/index.html', compiled)
+    // fs.writeFile('./dist/index.html', compiled)
   }
 }

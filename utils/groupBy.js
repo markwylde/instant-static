@@ -11,4 +11,4 @@ const groupBy = (field, items) => {
   }))
 }
 
-export default groupBy
+module.exports = groupBy
