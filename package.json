@@ -1,6 +1,6 @@
 {
   "name": "instant-static",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "A simple static website compiler for node",
   "main": "compile.js",
   "scripts": {
