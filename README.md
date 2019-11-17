@@ -9,17 +9,26 @@ This project comes with an `example` folder that you can build.
 instant-static -d example -o dist
 ```
 
+### Using the example app
+```bash
+git clone https://github.com/markwylde/instant-static
+npm i
+npm run start
+```
+
+Navigate to http://localhost:8080/2016/05/15/my-first-post
+
 ### Using node
 ```javascript
-const is = require('instant-static')
-const blog = require('instant-static-blog')
-const shop = require('instant-static-shop')
+const is = require('instant-static');
+const blog = require('instant-static-blog');
+const shop = require('instant-static-shop');
 
-is.addModules(blog, shop)
+is.addModules(blog, shop);
 
-is.includeAssets('example/images')
-is.includeContent('example/blog')
-is.includeContent('example/shop')
+is.includeAssets('example/images');
+is.includeContent('example/blog');
+is.includeContent('example/shop');
 
 is.addContent(`
   module: blog
@@ -34,7 +43,7 @@ is.addContent(`
     ## Node Post
     
     This post was inserted by node systematically
-`)
+`);
 
 is.addContent({
   module: 'blog',
@@ -47,11 +56,9 @@ is.addContent({
     ## Node Post
     
     This post was inserted by node systematically`
-}, 'blog')
+}, 'blog');
 
-const build = is.compile()
-build.save('dist')
-
+const build = is.compile();
+build.save('dist');
 ```
-
 

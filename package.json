@@ -1,48 +1,32 @@
 {
   "name": "instant-static",
   "version": "1.0.0",
-  "description": "",
+  "description": "A simple static website compiler for node",
   "main": "compile.js",
   "scripts": {
-    "demo": "babel-node example",
+    "start": "node example",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/yoxes/instant-static.git"
+    "url": "git+https://github.com/markwylde/instant-static.git"
   },
   "author": "",
   "private": true,
   "bugs": {
-    "url": "https://github.com/yoxes/instant-static/issues"
+    "url": "https://github.com/markwylde/instant-static/issues"
   },
-  "babel": {
-    "presets": [
-      "es2015"
-    ],
-    "plugins": [
-      "syntax-async-functions",
-      "transform-async-to-generator"
-    ]
-  },
-  "homepage": "https://github.com/yoxes/instant-static#readme",
+  "homepage": "https://github.com/markwylde/instant-static#readme",
   "dependencies": {
-    "babel-cli": "^6.14.0",
-    "babel-eslint": "^6.1.2",
-    "babel-plugin-syntax-async-functions": "^6.13.0",
-    "babel-plugin-transform-async-to-generator": "^6.8.0",
-    "babel-preset-es2015": "^6.14.0",
-    "change-case": "^3.0.0",
-    "ejs": "^2.5.2",
-    "eslint": "^3.5.0",
-    "eslint-plugin-async-await": "0.0.0",
-    "fs-extra-promise": "^0.4.1",
-    "js-yaml": "^3.6.1",
-    "marked": "^0.3.6",
-    "mime": "^1.3.4",
-    "mkdirp-promise": "^3.0.1",
-    "moment": "^2.15.0",
-    "ramda": "^0.22.1",
+    "change-case": "^3.1.0",
+    "ejs": "^2.7.2",
+    "fs-extra-promise": "^1.0.1",
+    "js-yaml": "^3.13.1",
+    "marked": "^0.7.0",
+    "mime": "^2.4.4",
+    "mkdirp-promise": "^5.0.1",
+    "moment": "^2.24.0",
+    "ramda": "^0.26.1",
     "rimraf-promise": "^2.0.0"
   }
 }

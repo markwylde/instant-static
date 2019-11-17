@@ -1,9 +1,8 @@
-const fs = require('fs-promise')
 // const render = require('../../utils/render').default
 
 module.exports = {
-  render: async ({posts, products}) => {
-    console.log('os')
+  render: async ({ posts, products }) => {
+    console.log('os');
     // const compiled = await render('./theme/layouts/main.ejs', {
     //   title: 'Welcome',
     //   content: await render('./theme/home.ejs', { posts, products })
@@ -11,4 +10,4 @@ module.exports = {
 
     // fs.writeFile('./dist/index.html', compiled)
   }
-}
+};
