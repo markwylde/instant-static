@@ -26,7 +26,7 @@
     "mime": "^2.4.4",
     "mkdirp-promise": "^5.0.1",
     "moment": "^2.24.0",
-    "ramda": "^0.26.1",
+    "ramda": "^0.27.0",
     "rimraf-promise": "^2.0.0"
   }
 }
